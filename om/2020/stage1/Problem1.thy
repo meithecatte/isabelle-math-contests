@@ -1,7 +1,13 @@
-theory Problem1
+theory %invisible Problem1
   imports Complex_Main
 begin
+section "Series I (September)"
+subsection "Problem 1"
 
+text "Let $a, b$ be real numbers. Let's assume that, for all
+real numbers $x, y$ the inequality
+$|(ax + by)(ay + bx)| \\leq x^2 + y^2$
+is satisfied. Show that $a^2 + b^2 \\leq 2$."
 theorem OM1:
   fixes a b :: real
   assumes given: "\<And>x y :: real. \<bar>(a*x + b*y)*(a*y + b*x)\<bar> \<le> x\<^sup>2 + y\<^sup>2"
@@ -16,4 +22,4 @@ proof -
   ultimately show "a\<^sup>2 + b\<^sup>2 \<le> 2" by auto
 qed
 
-end
+end %invisible

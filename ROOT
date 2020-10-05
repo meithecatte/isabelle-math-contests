@@ -4,8 +4,16 @@ session Useful_Deps in ".." = "HOL-Analysis" +
   theories
     "HOL-Number_Theory.Number_Theory"
 
-session Math_Contests = Useful_Deps +
-  directories
-    "om/2020/stage1"
+session "OM-2020-Stage1" in "om/2020/stage1" = Useful_Deps +
+  options [document = pdf, document_output = "output"]
   theories
     "Problem1"
+  document_files
+    "root.tex"
+
+session Source_Unknown in "source-unknown" = Useful_Deps +
+  options [document = pdf, document_output = "output"]
+  theories
+    "Zestaw1"
+  document_files
+    "root.tex"
