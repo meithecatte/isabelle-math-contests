@@ -1,14 +1,17 @@
-theory %invisible Zestaw1
+theory %invisible WarmupI
   imports
     Complex_Main
     "HOL-Library.Sum_of_Squares"
-    "HOL-Number_Theory.Cong"
+    "HOL-Number_Theory.Number_Theory"
     "HOL-Analysis.Analysis"
+    "HOL-Algebra.Algebra"
 begin
 
-text "These problems come from my high school's math circle. I know they originate
-in some old Polish Math Olympiad, but I haven't yet been able to locate the
-exact year."
+section "Warmup problems"
+
+text "Long ago, the Polish Math Olympiad published, apart from
+12 problems to be solved and mailed over 3 months, a set of 12
+warmup problems, which were similar in spirit, but easier."
 
 subsection "Warmup 1"
 
@@ -52,9 +55,9 @@ next
   then show ?thesis using `odd k` by blast
 qed
 
-(* TODO (didn't really investigate): original problem statement gives x :: int,
- (how) can I generalize this to x :: int without infinite pain? *)
-theorem warmup1:
+text "This allows us to prove the theorem, provided we assume x is a natural number."
+
+theorem warmup1_natx:
   fixes x :: nat and y :: int
   shows "3^x = 4*y + 5 \<longleftrightarrow> even x \<and> y = (3^x - 5) div 4"
 proof -
@@ -71,15 +74,42 @@ proof -
   moreover have "3 ^ x = 4 * y + 5" if "even x \<and> y = (3^x - 5) div 4"
   proof -
     from that have "even x" and y_form: "y = (3^x - 5) div 4" by auto
-    then have "[(3::int)^x - 5 = 1 - 5] (mod 4)"
-      by (metis even_power_3 cong_diff cong_refl)
-    also have "[1 - 5 = 0::int] (mod 4)"
-      by (auto simp: cong_def)
-    finally have "(3^x - 5::int) mod 4 = 0"
-      by (auto simp: cong_def)
+    then have "[3^x = 1::int] (mod 4)" using even_power_3 by blast 
+    then have "((3::int)^x - 5) mod 4 = 0" by (simp add: cong_def mod_diff_cong)
     thus ?thesis using y_form by auto
   qed
   ultimately show ?thesis by blast
+qed
+
+lemma powr_int_pos:
+  fixes x y :: int
+  assumes *: "3 powr x = y"
+  shows "x \<ge> 0"
+proof (rule ccontr)
+  assume neg_x: "\<not> x \<ge> 0"
+  then have y_inv: "y = inverse ((3::nat)^nat (-x))" (is "y = inverse (?n::nat)")
+    using powr_real_of_int and * by auto
+  hence "real ?n * of_int y = 1" by auto 
+  hence "?n * y = 1" using of_int_eq_iff by fastforce
+  hence "?n = 1"
+    by (metis nat_1_eq_mult_iff nat_int nat_numeral_as_int numeral_One of_nat_mult zmult_eq_1_iff) 
+  hence "nat (-x) = 0" by auto
+  thus False using neg_x by auto
+qed
+
+corollary warmup1: "3 powr x = 4*y + 5 \<longleftrightarrow> x \<ge> 0 \<and> even x \<and> y = (3^(nat x) - 5) div 4" for x y :: int
+proof
+  assume assm: "3 powr x = 4*y + 5"
+  then have "x \<ge> 0" using powr_int_pos by fastforce
+  hence "3 powr (nat x) = 4*y + 5" using assm by simp
+  hence "(3::real)^(nat x) = 4*y + 5" using powr_realpow by auto
+  hence with_nat: "3^(nat x) = 4*y + 5" using of_int_eq_iff by fastforce
+  hence "even (nat x) \<and> y = (3^(nat x) - 5) div 4" using warmup1_natx by auto
+  thus "x \<ge> 0 \<and> even x \<and> y = (3^(nat x) - 5) div 4" using `x \<ge> 0` and even_nat_iff by auto
+next
+  assume assm: "x \<ge> 0 \<and> even x \<and> y = (3^(nat x) - 5) div 4"
+  then have "3^(nat x) = 4*y + 5" using warmup1_natx and even_nat_iff by blast
+  thus "3 powr x = 4*y + 5" using assm powr_real_of_int by fastforce
 qed
 
 subsection "Warmup 2"
@@ -131,7 +161,7 @@ with the @{term convex_on} predicate, which is defined by
 The bulk of the work, of course, is in showing that our function,
 $x \\mapsto x^4$, is convex."
 
-theorem warmup2:
+theorem
   "(a+b)^4 \<le> 8*(a^4 + b^4)" for a b :: real
 proof -
   let ?f = "\<lambda>x. x^4"
@@ -155,29 +185,5 @@ proof -
   also have "... = (a+b)^4/16" using power_divide [of "a+b" 2, where n=4] by fastforce
   finally show ?thesis by auto
 qed
-
-lemma pos:
-  fixes x y :: int
-  assumes *: "3 powr x = y"
-  shows "x \<ge> 0"
-proof (rule ccontr)
-  let ?k = "3::nat"
-  assume neg_x: "\<not> x \<ge> 0"
-  then have y_inv: "y = inverse (?k^nat (-x))"
-    using powr_real_of_int and * by auto
-  from neg_x have "nat (-x) > 0" by auto
-  hence pow_gt_1: "?k^nat (-x) > (1::real)" by auto
-  hence "inverse (?k^nat (-x)) < 1" using inverse_less_1_iff by auto
-  hence "y < 1" using y_inv by auto
-  moreover have "0 < y" proof -
-    from pow_gt_1 have "?k^nat (-x) > 0" by auto
-    hence "inverse (?k^nat (-x)) > 0" by auto
-    thus "y > 0" using y_inv by linarith
-  qed
-  ultimately show False by auto
-qed
-
-
-value "1::complex"
 
 end %invisible
