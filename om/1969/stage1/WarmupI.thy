@@ -247,7 +247,7 @@ theorem warmup4_generic:
   obtains O\<^sub>1 O\<^sub>2 where "S \<subseteq> cball O\<^sub>1 1 \<union> cball O\<^sub>2 1"
 proof
   let ?pairs = "S \<times> S"
-  let ?dist = "%(a, b). dist a b"
+  let ?dist = "\<lambda>(a, b). dist a b"
   let ?big_pair = "arg_max_on ?dist ?pairs"
   let ?O\<^sub>1 = "(fst ?big_pair)"
   let ?O\<^sub>2 = "(snd ?big_pair)"
