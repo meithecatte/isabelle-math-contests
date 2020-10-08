@@ -24,10 +24,11 @@ jobs:
           path: .heaps
           restore-keys: |
             ${{ runner.os }}-Isabelle2020
-      - name: Build sessions and documents
+
+      - name: Build heavy sessions
         uses: pandaman64/isabelle-action@v1.1
         with:
-          args: "build -D . -v"
+          args: "build -D . -v Useful_Deps"
           heapCacheDir: .heaps
 
       - name: Upload heaps
@@ -35,6 +36,15 @@ jobs:
         with:
           name: heaps
           path: .heaps
+
+      - name: Install extra packages
+        run: sudo apt install texlive-latex-extra
+
+      - name: Build documents
+        uses: pandaman64/isabelle-action@v1.1
+        with:
+          args: "build -D . -v"
+          heapCacheDir: .heaps
 
       - name: Debugging info
         run: pwd && tree
