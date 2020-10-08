@@ -1,17 +1,18 @@
-theory %invisible WarmupI
+section "Warmup problems (Series I)"
+
+text "Long ago, the Polish Math Olympiad published, apart from
+12 problems to be solved and mailed over 3 months, a set of 12
+warmup problems, which were similar in spirit, but easier."
+
+theory WarmupI
   imports
     Complex_Main
+    Future_Library.Future_Library
     "HOL-Library.Sum_of_Squares"
     "HOL-Library.Quadratic_Discriminant"
     "HOL-Number_Theory.Cong"
     "HOL-Analysis.Analysis"
 begin
-
-section "Warmup problems"
-
-text "Long ago, the Polish Math Olympiad published, apart from
-12 problems to be solved and mailed over 3 months, a set of 12
-warmup problems, which were similar in spirit, but easier."
 
 subsection "Warmup 1"
 
@@ -80,6 +81,8 @@ proof -
   qed
   ultimately show ?thesis by blast
 qed
+
+text "To consider negative values of $x$, we'll need to venture into the reals:"
 
 lemma powr_int_pos:
   fixes x y :: int
@@ -161,7 +164,7 @@ with the @{term convex_on} predicate, which is defined by
 The bulk of the work, of course, is in showing that our function,
 $x \\mapsto x^4$, is convex."
 
-theorem
+theorem warmup2:
   "(a+b)^4 \<le> 8*(a^4 + b^4)" for a b :: real
 proof -
   let ?f = "\<lambda>x. x^4"
@@ -188,7 +191,9 @@ qed
 
 subsection "Warmup 3"
 
-theorem
+text "This one is a straight-forward equation:"
+
+theorem warmup3:
   "\<bar>x-1\<bar>*\<bar>x+2\<bar>*\<bar>x-3\<bar>*\<bar>x+4\<bar> = \<bar>x+1\<bar>*\<bar>x-2\<bar>*\<bar>x+3\<bar>*\<bar>x-4\<bar>
     \<longleftrightarrow> x \<in> {0, sqrt 7, -sqrt 7,
                 sqrt ((13 + sqrt 73) / 2),
@@ -225,4 +230,84 @@ proof -
   ultimately show ?thesis by blast
 qed
 
-end %invisible
+subsection "Warmup 4"
+
+text "There is a set of $n$ points on a plane with the property that,
+in each triplet of points, there's a pair with distance at most 1.
+Prove that the set can be covered with two circles of radius 1."
+
+text "There's nothing special about the case of points on a plane,
+the theorem can be proved without additional difficulties for any
+metric space:"
+
+theorem warmup4_generic:
+  fixes S :: "'a::metric_space set"
+  assumes "finite S"
+  assumes property: "\<And>T. T \<subseteq> S \<and> card T = 3 \<Longrightarrow> \<exists>p\<in>T. \<exists>q\<in>T. p \<noteq> q \<and> dist p q \<le> 1"
+  obtains O\<^sub>1 O\<^sub>2 where "S \<subseteq> cball O\<^sub>1 1 \<union> cball O\<^sub>2 1"
+proof
+  let ?pairs = "S \<times> S"
+  let ?dist = "%(a, b). dist a b"
+  let ?big_pair = "arg_max_on ?dist ?pairs"
+  let ?O\<^sub>1 = "(fst ?big_pair)"
+  let ?O\<^sub>2 = "(snd ?big_pair)"
+  show "S \<subseteq> cball ?O\<^sub>1 1 \<union> cball ?O\<^sub>2 1"
+  proof
+    fix x
+    assume "x \<in> S"
+
+    from `finite S` and `x \<in> S`
+    have "finite ?pairs" and "?pairs \<noteq> {}" by auto
+    hence OinS: "?big_pair \<in> ?pairs" by (simp add: arg_max_if_finite)
+
+    have "\<forall>(P,Q)\<in>?pairs. dist ?O\<^sub>1 ?O\<^sub>2 \<ge> dist P Q" 
+      using `finite ?pairs` and `?pairs \<noteq> {}`
+      by (metis (mono_tags, lifting) arg_max_greatest prod.case_eq_if)
+    hence greatest: "dist P Q \<le> dist ?O\<^sub>1 ?O\<^sub>2" if "P \<in> S" and "Q \<in> S" for P Q
+      using that by blast
+
+    let ?T = "{?O\<^sub>1, ?O\<^sub>2, x}"
+    have TinS: "?T \<subseteq> S" using OinS and `x \<in> S` by auto
+
+    {
+      presume "?O\<^sub>1 \<noteq> ?O\<^sub>2" and "x \<notin> {?O\<^sub>1, ?O\<^sub>2}"
+      then have "card ?T = 3" by auto
+    }
+    then consider
+      (primary) "card ?T = 3" |
+      (limit) "x \<in> {?O\<^sub>1, ?O\<^sub>2}" |
+      (degenerate) "?O\<^sub>1 = ?O\<^sub>2" by blast
+    thus "x \<in> cball ?O\<^sub>1 1 \<union> cball ?O\<^sub>2 1"
+    proof cases
+      case primary
+      obtain p and q where "p \<noteq> q" and "dist p q \<le> 1" and "p \<in> ?T" and "q \<in> ?T"
+        using property [of ?T] and `card ?T = 3` TinS
+        by auto
+      then have
+        "dist ?O\<^sub>1 ?O\<^sub>2 \<le> 1 \<or> dist ?O\<^sub>1 x \<le> 1 \<or> dist ?O\<^sub>2 x \<le> 1"
+        by (metis dist_commute insertE singletonD)
+      thus "x \<in> cball ?O\<^sub>1 1 \<union> cball ?O\<^sub>2 1"
+        using greatest and TinS
+        by fastforce
+    next
+      case limit
+      then have "dist x ?O\<^sub>1 = 0 \<or> dist x ?O\<^sub>2 = 0" by auto
+      thus ?thesis by auto
+    next
+      case degenerate
+      from this greatest TinS have "dist ?O\<^sub>1 x = 0" by auto
+      thus ?thesis by auto
+    qed
+  qed
+qed
+
+text "Let's make sure that the particular case of points on a plane also works out:"
+
+corollary warmup4:
+  fixes S :: "(real ^ 2) set"
+  assumes "finite S"
+  assumes property: "\<And>T. T \<subseteq> S \<and> card T = 3 \<Longrightarrow> \<exists>p\<in>T. \<exists>q\<in>T. p \<noteq> q \<and> dist p q \<le> 1"
+  obtains O\<^sub>1 O\<^sub>2 where "S \<subseteq> cball O\<^sub>1 1 \<union> cball O\<^sub>2 1"
+  using warmup4_generic and assms by auto
+
+end

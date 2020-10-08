@@ -4,7 +4,11 @@ session Useful_Deps in ".." = "HOL-Analysis" +
   theories
     "HOL-Number_Theory.Number_Theory"
 
-session "OM-1969-Stage1" in "om/1969/stage1" = Useful_Deps +
+session Future_Library = Useful_Deps +
+  theories
+    Future_Library
+
+session "OM-1969-Stage1" in "om/1969/stage1" = Future_Library +
   options [document = pdf, document_output = "output"]
   theories
     "WarmupI"
