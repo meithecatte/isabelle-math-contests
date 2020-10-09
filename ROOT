@@ -12,6 +12,7 @@ session "OM-1969-Stage1" in "om/1969/stage1" = Future_Library +
   options [document = pdf, document_output = "output"]
   theories
     "WarmupI"
+    "SeriesI"
   document_files
     "root.tex"
 
