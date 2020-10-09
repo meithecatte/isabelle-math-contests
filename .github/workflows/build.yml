@@ -40,3 +40,4 @@ jobs:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
           BRANCH: built-pdfs
           FOLDER: output
+          CLEAN: false
