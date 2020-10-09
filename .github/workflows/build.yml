@@ -28,7 +28,7 @@ jobs:
       - name: Build documents
         uses: NieDzejkob/isabelle-action@v1.4
         with:
-          args: "build -D . -v"
+          args: "build -b -D . -v"
           heapCacheDir: .heaps
 
       - name: Prepare deploy
