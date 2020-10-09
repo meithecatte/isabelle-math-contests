@@ -17,7 +17,7 @@ jobs:
       # we use different keys (by github.run_id) for each job,
       # though retrieving old cache via restore-keys.
       # https://github.com/actions/cache/issues/342#issuecomment-673371329
-      - name: Cache Isabelle Heaps
+      - name: Cache Isabelle heaps
         uses: actions/cache@v2
         with:
           key: ${{ runner.os }}-Isabelle2020-${{ hashFiles('ROOT') }}-${{ github.run_id }}
@@ -25,24 +25,25 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-Isabelle2020
 
-      - name: Cache Docker containers
-        uses: satackey/action-docker-layer-caching@v0.0.8
-        continue-on-error: true
-
       - name: Build heavy sessions
         uses: NieDzejkob/isabelle-action@v1.3
         with:
           args: "build -b -d . -v Useful_Deps"
           heapCacheDir: .heaps
 
-      - name: Upload heaps
-        uses: actions/upload-artifact@v2
-        with:
-          name: heaps
-          path: .heaps
-
       - name: Build documents
         uses: NieDzejkob/isabelle-action@v1.3
         with:
           args: "build -D . -v"
           heapCacheDir: .heaps
+
+      - name: Prepare deploy
+        run: python3 deploy.py
+
+      - name: Deploy
+        uses: uses: JamesIves/github-pages-deploy-action@3.6.2
+        with:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+          BRANCH: built-pdfs
+          FOLDER: output
+          CLEAN: true
