@@ -25,7 +25,7 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-Isabelle2020-cachefix
 
-      - run: df -h
+      - run: free -m && false
 
       - name: Build documents
         uses: NieDzejkob/isabelle-action@v1.4
