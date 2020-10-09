@@ -25,14 +25,8 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-Isabelle2020
 
-      - name: Build heavy sessions
-        uses: NieDzejkob/isabelle-action@v1.3
-        with:
-          args: "build -b -d . -v Useful_Deps"
-          heapCacheDir: .heaps
-
       - name: Build documents
-        uses: NieDzejkob/isabelle-action@v1.3
+        uses: NieDzejkob/isabelle-action@v1.4
         with:
           args: "build -D . -v"
           heapCacheDir: .heaps
