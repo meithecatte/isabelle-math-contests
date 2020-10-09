@@ -1,5 +1,6 @@
 import os, shutil
 OUTDIR = 'output'
+os.makedirs(OUTDIR, exist_ok=True)
 for root, dirs, files in os.walk('.'):
     if 'document.pdf' in files:
         segments = root.split('/')
