@@ -46,6 +46,3 @@ jobs:
         with:
           args: "build -D . -v"
           heapCacheDir: .heaps
-
-      - name: Debugging info
-        run: pwd && tree
