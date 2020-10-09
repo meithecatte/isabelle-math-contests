@@ -28,8 +28,8 @@ proof -
     by (auto simp: cong_def minus_one_power_iff)
 qed
 
-text "This is, of course, not the only strategy. We leave an alternative proof,
-in the hope that it will be instructive in doing calculations mod $n$."
+text "Here is an alternative proof ---
+hopefully it will be instructive in doing calculations mod $n$."
 
 lemma "[3^k = 1::int] (mod 4) \<longleftrightarrow> even k"
 proof (cases "even k")
@@ -56,7 +56,7 @@ next
   then show ?thesis using `odd k` by blast
 qed
 
-text "This allows us to prove the theorem, provided we assume x is a natural number."
+text "This allows us to prove the theorem, provided we assume $x$ is a natural number."
 
 theorem warmup1_natx:
   fixes x :: nat and y :: int
@@ -76,7 +76,8 @@ proof -
   proof -
     from that have "even x" and y_form: "y = (3^x - 5) div 4" by auto
     then have "[3^x = 1::int] (mod 4)" using even_power_3 by blast 
-    then have "((3::int)^x - 5) mod 4 = 0" by (simp add: cong_def mod_diff_cong)
+    then have "((3::int)^x - 5) mod 4 = 0"
+      by (simp add: cong_def mod_diff_cong)
     thus ?thesis using y_form by auto
   qed
   ultimately show ?thesis by blast
@@ -100,7 +101,9 @@ proof (rule ccontr)
   thus False using neg_x by auto
 qed
 
-corollary warmup1: "3 powr x = 4*y + 5 \<longleftrightarrow> x \<ge> 0 \<and> even x \<and> y = (3^(nat x) - 5) div 4" for x y :: int
+corollary warmup1:
+  fixes x y :: int
+  shows "3 powr x = 4*y + 5 \<longleftrightarrow> x \<ge> 0 \<and> even x \<and> y = (3^(nat x) - 5) div 4"
 proof
   assume assm: "3 powr x = 4*y + 5"
   then have "x \<ge> 0" using powr_int_pos by fastforce
