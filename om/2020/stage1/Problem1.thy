@@ -1,8 +1,8 @@
-theory %invisible Problem1
-  imports Complex_Main
-begin
 section "Series I (September)"
 subsection "Problem 1"
+theory Problem1
+  imports Complex_Main
+begin
 
 text "Let $a, b$ be real numbers. Let's assume that, for all
 real numbers $x, y$ the inequality
@@ -22,4 +22,4 @@ proof -
   ultimately show "a\<^sup>2 + b\<^sup>2 \<le> 2" by auto
 qed
 
-end %invisible
+end
