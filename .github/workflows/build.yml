@@ -25,8 +25,12 @@ jobs:
           restore-keys: |
             ${{ runner.os }}-Isabelle2020
 
+      - name: Cache Docker containers
+        uses: satackey/action-docker-layer-caching@v0.0.8
+        continue-on-error: true
+
       - name: Build heavy sessions
-        uses: NieDzejkob/isabelle-action@v1.2
+        uses: NieDzejkob/isabelle-action@v1.3
         with:
           args: "build -b -d . -v Useful_Deps"
           heapCacheDir: .heaps
