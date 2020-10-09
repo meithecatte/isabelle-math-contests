@@ -26,9 +26,9 @@ jobs:
             ${{ runner.os }}-Isabelle2020
 
       - name: Build heavy sessions
-        uses: pandaman64/isabelle-action@v1.1
+        uses: NieDzejkob/isabelle-action@v1.2
         with:
-          args: "build -d . -v Useful_Deps"
+          args: "build -b -d . -v Useful_Deps"
           heapCacheDir: .heaps
 
       - name: Upload heaps
@@ -36,9 +36,6 @@ jobs:
         with:
           name: heaps
           path: .heaps
-
-      - name: Install extra packages
-        run: sudo apt install texlive-latex-extra
 
       - name: Build documents
         uses: pandaman64/isabelle-action@v1.1
