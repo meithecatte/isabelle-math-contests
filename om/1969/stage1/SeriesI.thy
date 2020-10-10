@@ -75,12 +75,9 @@ qed
 
 subsection "Problem 2"
 
-text "Prove that a sequence is bounded, converges, and find the limit.
+text "Prove that a sequence is bounded, converges, and find the limit."
 
-As the sequence is defined recursively and depends on a constant $a$, we perform our
-work in a locale:"
-
-locale problem2 =
+context
   fixes a :: real
   assumes a_bounds: "0 < a" "a < 1"
 begin
@@ -157,7 +154,8 @@ proof -
     by auto
   moreover from c_bounded and `c \<longlonglongrightarrow> L` have "L \<le> x1"
     by (meson LIMSEQ_le_const2 le_less_linear less_imp_triv)
-  ultimately have "L = x1" using a_bounds by auto
+  moreover from a_bounds have "x1 < x2" by auto
+  ultimately have "L = x1" by auto
   thus ?thesis using `c \<longlonglongrightarrow> L` by auto
 qed
 
