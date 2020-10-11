@@ -175,14 +175,14 @@ proof -
   proof (rule f''_ge0_imp_convex)
     show "convex UNIV" by auto
     let ?f' = "\<lambda>x. 4*x^3"
-    show "((\<lambda>x. x^4) has_real_derivative ?f' x) (at x)" for x :: real
+    show "(?f has_real_derivative ?f' x) (at x)" for x :: real
       using DERIV_pow [where n=4] by fastforce
     let ?f'' = "\<lambda>x. 12*x^2"
-    show "((\<lambda>x. 4*x^3) has_real_derivative ?f'' x) (at x)" for x :: real
+    show "(?f' has_real_derivative ?f'' x) (at x)" for x :: real
       using DERIV_pow [where n=3]
         and DERIV_cmult [where c=4]
       by fastforce
-    show "0 \<le> 12 * x^2" for x :: real
+    show "0 \<le> ?f'' x" for x :: real
       by auto
   qed
   hence "(a/2 + b/2)^4 \<le> a^4/2 + b^4/2" (is "?lhs \<le> ?rhs")
@@ -207,7 +207,7 @@ theorem warmup3:
 proof -
   have "?eqn \<longleftrightarrow> \<bar>(x-1)*(x+2)*(x-3)*(x+4)\<bar> = \<bar>(x+1)*(x-2)*(x+3)*(x-4)\<bar>" (is "_ \<longleftrightarrow> \<bar>?lhs\<bar> = \<bar>?rhs\<bar>")
     by (simp add: abs_mult)
-  also have "... \<longleftrightarrow> ?lhs - ?rhs = 0 \<or> ?lhs + ?rhs = 0" by auto
+  also have "... \<longleftrightarrow> ?lhs - ?rhs = 0 \<or> ?lhs + ?rhs = 0" by (auto simp add: abs_eq_iff)
   also have "... \<longleftrightarrow> x*(x^2 - 7) = 0 \<or> x^4 - 13*x^2 + 24 = 0" by algebra
   also have "x*(x^2 - 7) = 0 \<longleftrightarrow> x \<in> {0, sqrt 7, -sqrt 7}" using plus_or_minus_sqrt by auto
   also have "x^4 - 13*x^2 + 24 = 0 \<longleftrightarrow> x\<^sup>2 \<in> {(13 + sqrt 73) / 2, (13 - sqrt 73) / 2}"
