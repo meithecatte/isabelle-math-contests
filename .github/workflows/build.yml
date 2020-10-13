@@ -26,7 +26,7 @@ jobs:
             ${{ runner.os }}-Isabelle2020-cachefix
 
       - name: Build documents
-        uses: NieDzejkob/isabelle-action@v1.4
+        uses: NieDzejkob/isabelle-action@v1.5
         with:
           args: "build -D . -v"
           heapCacheDir: .heaps
