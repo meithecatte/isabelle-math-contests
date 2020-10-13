@@ -251,9 +251,9 @@ theorem warmup4_generic:
 proof
   let ?pairs = "S \<times> S"
   let ?dist = "\<lambda>(a, b). dist a b"
-  let ?big_pair = "arg_max_on ?dist ?pairs"
-  let ?O\<^sub>1 = "(fst ?big_pair)"
-  let ?O\<^sub>2 = "(snd ?big_pair)"
+  define widest_pair where "widest_pair = arg_max_on ?dist ?pairs"
+  let ?O\<^sub>1 = "(fst widest_pair)"
+  let ?O\<^sub>2 = "(snd widest_pair)"
   show "S \<subseteq> cball ?O\<^sub>1 1 \<union> cball ?O\<^sub>2 1"
   proof
     fix x
@@ -261,9 +261,11 @@ proof
 
     from `finite S` and `x \<in> S`
     have "finite ?pairs" and "?pairs \<noteq> {}" by auto
-    hence OinS: "?big_pair \<in> ?pairs" by (simp add: arg_max_if_finite)
+    hence OinS: "widest_pair \<in> ?pairs"
+      unfolding widest_pair_def by (simp add: arg_max_if_finite)
 
     have "\<forall>(P,Q)\<in>?pairs. dist ?O\<^sub>1 ?O\<^sub>2 \<ge> dist P Q" 
+      unfolding widest_pair_def
       using `finite ?pairs` and `?pairs \<noteq> {}`
       by (metis (mono_tags, lifting) arg_max_greatest prod.case_eq_if)
     hence greatest: "dist P Q \<le> dist ?O\<^sub>1 ?O\<^sub>2" if "P \<in> S" and "Q \<in> S" for P Q
