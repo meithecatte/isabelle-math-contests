@@ -119,10 +119,7 @@ proof -
   ultimately have "p*a > a*n powr (1/3)" by simp
   hence "p > n powr (1/3)" using `a \<noteq> 0` by simp
   hence "p > n powr (2/3)" using forbidden_range [of p] and `p * a dvd n` by force
-
-  \<comment> \<open>Isabelle doesn't like it when the result of an "obtain" theorem comes
-  from another "obtain", so we have to destructure the goal ourselves\<close>
-  assume "\<And>p. prime p \<Longrightarrow> p > n powr (2/3) \<Longrightarrow> thesis"
-  from this [of p] show thesis using `p > n powr (2/3)` and `prime p` by auto
+  moreover note `prime p`
+  ultimately show ?thesis using that [of p] by auto
 qed
 end
