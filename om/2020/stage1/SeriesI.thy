@@ -76,7 +76,7 @@ proof -
   proof -
     {
       presume "n = 1"
-      from this and divrange [of 1] have "\<not> 1 dvd 1" by auto
+      with divrange [of 1] have "\<not> 1 dvd 1" by auto
       moreover have "1 dvd (1::nat)" by auto
       ultimately have False by contradiction
     }
@@ -111,7 +111,7 @@ proof -
     by (metis less_irrefl prime_factor_nat)
   hence "p*a dvd n" using `a dvd n` and `n div a > 1`
     by (metis div_by_0 dvd_div_iff_mult gr_implies_not_zero)
-  from this and div_above_a [of "p*a"] have "p*a > n powr (2/3)"
+  with div_above_a [of "p*a"] have "p*a > n powr (2/3)"
     using `prime p` and prime_nat_iff by fastforce
   moreover have "a * n powr (1/3) < n powr (1/3) * n powr (1/3)"
     using `a < n powr (1/3)` by auto

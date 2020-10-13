@@ -300,7 +300,7 @@ proof
       thus ?thesis by auto
     next
       case degenerate
-      from this greatest TinS have "dist ?O\<^sub>1 x = 0" by auto
+      with greatest and TinS have "dist ?O\<^sub>1 x = 0" by auto
       thus ?thesis by auto
     qed
   qed
