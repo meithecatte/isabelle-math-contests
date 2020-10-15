@@ -3,7 +3,6 @@ section "Series II"
 theory SeriesII
   imports
     Complex_Main
-    
     "HOL-Analysis.Analysis"
 begin
 
@@ -69,3 +68,5 @@ proof -
   with `M \<ge> 0` show "sqrt (sum_list (map power2 as)) \<le> M"
     by (metis abs_of_nonneg real_sqrt_abs real_sqrt_le_iff)
 qed
+
+end
