@@ -274,10 +274,7 @@ proof
     let ?T = "{?O\<^sub>1, ?O\<^sub>2, x}"
     have TinS: "?T \<subseteq> S" using OinS and `x \<in> S` by auto
 
-    {
-      presume "?O\<^sub>1 \<noteq> ?O\<^sub>2" and "x \<notin> {?O\<^sub>1, ?O\<^sub>2}"
-      then have "card ?T = 3" by auto
-    }
+    have "card ?T = 3" if "?O\<^sub>1 \<noteq> ?O\<^sub>2" and "x \<notin> {?O\<^sub>1, ?O\<^sub>2}" using that by auto
     then consider
       (primary) "card ?T = 3" |
       (limit) "x \<in> {?O\<^sub>1, ?O\<^sub>2}" |

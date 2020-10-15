@@ -75,7 +75,7 @@ proof -
   have "n > 1"
   proof -
     {
-      presume "n = 1"
+      assume "n = 1"
       with divrange [of 1] have "\<not> 1 dvd 1" by auto
       moreover have "1 dvd (1::nat)" by auto
       ultimately have False by contradiction
