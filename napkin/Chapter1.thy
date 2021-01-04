@@ -2,8 +2,8 @@ theory Chapter1
   imports "HOL-Algebra.Algebra"
 begin
 
-text "It seems that one cannot use \<heartsuit> as variable. My disappointment
-is immeasurable and my day is ruined."
+text \<open>It seems that one cannot use $\heartsuit$ as variable. My disappointment
+is immeasurable and my day is ruined.\<close>
 
 theorem problem1A:
   assumes group: "group G"
