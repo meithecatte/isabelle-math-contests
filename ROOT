@@ -26,3 +26,10 @@ session "OM-2020-Stage1" in "om/2020/stage1" = Common +
     "SeriesI"
   document_files
     "root.tex"
+
+session "Napkin" in "napkin" = Common + 
+  options [document = pdf, document_output = "output"]
+  theories
+    "Chapter1"
+  document_files
+    "root.tex"
