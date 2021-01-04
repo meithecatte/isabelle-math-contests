@@ -1,0 +1,151 @@
+This document contains various notes on the mathematical library of Isabelle/HOL.
+
+# Groups
+
+## The two definitions of a group
+
+The more fundamental structures have two independent definitions.
+For example, groups are first introduced in `HOL.Groups.group`:
+
+```isabelle
+locale semigroup =
+  fixes f :: "'a ⇒ 'a ⇒ 'a"  (infixl "❙*" 70)
+  assumes assoc [ac_simps]: "a ❙* b ❙* c = a ❙* (b ❙* c)"
+
+locale group = semigroup +
+  fixes z :: 'a ("❙1")
+  fixes inverse :: "'a ⇒ 'a"
+  assumes group_left_neutral: "❙1 ❙* a = a"
+  assumes left_inverse [simp]:  "inverse a ❙* a = ❙1"
+```
+
+This defines a locale in which an abstract associative operation with all the properties
+we know and love is available. This is convenient when you want to prove simple
+statements about the elements inside a group, but gets unwieldy when we want to think
+about groups as first-class objects, with subgroups and stuff.
+
+For this reason, most of group theory is developed in terms of the definition in `HOL-Algebra`.
+The `HOL-Algebra` group has two main differences:
+ - Instead of using the entire type, an explicit carrier set is defined. (Subtyping is *possible*
+   in Isabelle/HOL (see the `typedef` command), but not particularily pleasant.)
+ - The values that define the group are wrapped up into a record.
+
+```isabelle
+record 'a partial_object =
+  carrier :: "'a set"
+
+record 'a monoid =  "'a partial_object" +
+  mult    :: "['a, 'a] ⇒ 'a" (infixl "⊗ı" 70)
+  one     :: 'a ("𝟭ı")
+```
+
+Note that apart from a `'a monoid` type, this also defines `('a, 'b) monoid_scheme`. This has nothing
+to do with the mathematical notion of a scheme in algebraic geometry, and comes from Isabelle's
+mechanism for extensible records.
+
+For an in-depth explanation of records, see [tutorial.pdf] section 8.2, but the gist is that
+each record has a secret `…` field that stores the contents of any potential record extensions.
+The `scheme` is the type of a potentially-extended record, where the last type parameter
+is the type of that field. As you might expect, `'a monoid` is a synonym of `('a, unit) monoid_scheme`.
+
+## Locale or not
+
+Of course, we still need to declare the actual laws. This is still done with a locale:
+
+```isabelle
+locale monoid =
+  fixes G (structure)
+  assumes m_closed [intro, simp]:
+         "⟦x ∈ carrier G; y ∈ carrier G⟧ ⟹ x ⊗ y ∈ carrier G"
+      and m_assoc:
+         "⟦x ∈ carrier G; y ∈ carrier G; z ∈ carrier G⟧
+          ⟹ (x ⊗ y) ⊗ z = x ⊗ (y ⊗ z)"
+      and one_closed [intro, simp]: "𝟭 ∈ carrier G"
+      and l_one [simp]: "x ∈ carrier G ⟹ 𝟭 ⊗ x = x"
+      and r_one [simp]: "x ∈ carrier G ⟹ x ⊗ 𝟭 = x"
+```
+
+We can use this in two ways. Firstly, we can actually state our theorem inside
+the locale. This is most commonly used if only one group is involved.
+In this situation, our group is `G`, the operation is `⊗` (`\otimes`),
+the identity is `𝟭` (`\one`), and inverses can be obtained with the `inv` function.
+
+```isabelle
+lemma (in group) inv_eq_1_iff [simp]:
+  assumes "x ∈ carrier G" shows "inv x = 𝟭 ⟷ x = 𝟭"
+proof -
+  have "x = 𝟭" if "inv x = 𝟭"
+  proof -
+    have "inv x ⊗ x = 𝟭"
+      using assms l_inv by blast
+    then show "x = 𝟭"
+      using that assms by simp
+  qed
+  then show ?thesis
+    by auto
+qed
+```
+
+Secondly, each locale also defines a predicate which combines all its assumptions:
+
+```isabelle
+  assumes "group G"
+```
+
+In this situation, the group being used must be provided explicitly — the operation is
+`⊗⇘G⇙` (where the subscript arrows can be typed as `=_(` and `=_)` respectively),
+the identity is `𝟭⇘G⇙`, the inverse function is `inv⇘G⇙`, and so on.
+
+## Subgroups
+
+We can talk about subgroups with `subgroup H G`. Note that while `G` is an entire
+group (that is, `('a, 'b) monoid_scheme`), `H` is only a set of elements.
+
+If you want to use `H` as a full-fledged group, you'll need to use record update syntax:
+
+```isabelle
+lemma (in subgroup) subgroup_is_group [intro]:
+  assumes "group G"
+  shows "group (G⦇carrier := H⦈)"
+```
+
+(the funny parentheses can be typed with `(|` and `|)`)
+
+## Abelian groups
+
+You most likely want `comm_group`. Do not confuse this with the `abelian_group` locale,
+which talks about `add_monoid G`, the additive group of a ring called `G`.
+
+## Morphisms
+
+For groups, we have `hom G H`, the set of all homomorphisms `G => H`. Likewise, there's
+`iso G H`. Moreover, when we merely want to say that an isomorphism exists, there is the
+`≅` (`\cong`) operator.
+
+For rings, there's `ring_hom` and `ring_iso`, and the operator is `≃` (`\simeq`) instead.
+
+For more exotic morphisms, we have `mon G H` (set of injective homomorphisms),
+`epi G H` (set of surjective homomorphisms).
+
+For automorphisms, see `auto G`. There doesn't seem to be an equivalent for endomorphisms,
+perhaps because they aren't that interesting as an object. For the automorphism group, see
+`AutoGroup G`.
+
+On a related topic, there's `Bij S` (bijections on S) and `BijGroup S` (group of bijections).
+
+## Other useful things
+
+ - exponentiation in groups: `x [^] n`
+ - `order S = card (carrier S)`
+ - order of an element: `ord x`
+ - `G ×× H` (`\times\times`) - direct product (group of pairs)
+ - `generate G S` - subgroup (as set) of `G` generated by `S`
+ - `subgroup_generated G S` - subgroup (as full group) of `G` generated by `S`
+ - `cyclic_group G` - predicate: generator exists
+ - `integer_mod_group n` - concrete instance of cyclic group of order `n`. In particular,
+   `integer_mod_group 0 = integer_group`
+
+Note that some facts about cyclic groups, such as `cyclic_group (integer_mod_group n)`,
+are missing from `HOL-Algebra`. See `Cyclic_Groups.thy`.
+
+[tutorial.pdf]: https://isabelle.in.tum.de/dist/Isabelle2020/doc/tutorial.pdf
