@@ -1,5 +1,12 @@
 This document contains various notes on the mathematical library of Isabelle/HOL.
 
+# Pigeonhole Principle
+
+At first, it might seem hard to formalize this kind of reasoning. Most of the time,
+what you actually want is the property that if `f: A -> B` is an injective function,
+then `card A <= card B`. When you have `card A > card B`, you can infer that the
+function in question cannot be injective.
+
 # Abstract algebra
 
 ## The two definitions of a group
