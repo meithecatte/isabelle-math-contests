@@ -1,6 +1,6 @@
 This document contains various notes on the mathematical library of Isabelle/HOL.
 
-# Groups
+# Abstract algebra
 
 ## The two definitions of a group
 
