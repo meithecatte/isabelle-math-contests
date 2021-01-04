@@ -7,7 +7,7 @@ warmup problems, which were similar in spirit, but easier."
 theory WarmupI
   imports
     Complex_Main
-    Future_Library.Future_Library
+    Common.Future_Library
     "HOL-Library.Sum_of_Squares"
     "HOL-Library.Quadratic_Discriminant"
     "HOL-Number_Theory.Cong"
