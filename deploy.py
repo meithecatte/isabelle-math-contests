@@ -1,10 +1,11 @@
 import os, shutil
+BUILD = 'build'
 OUTDIR = 'output'
 os.makedirs(OUTDIR, exist_ok=True)
-for root, dirs, files in os.walk('.'):
+for root, dirs, files in os.walk(BUILD):
     if 'document.pdf' in files:
         segments = root.split('/')
-        assert segments[0] == '.'
+        assert segments[0] == BUILD
         assert segments[-1] == 'output'
         segments = segments[1:-1]
         filename = '-'.join(segments) + '.pdf'
