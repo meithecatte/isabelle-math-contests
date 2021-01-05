@@ -158,6 +158,8 @@ On a related topic, there's `Bij S` (bijections on S) and `BijGroup S` (group of
  - `G ×× H` (`\times\times`) - direct product (group of pairs)
  - `sym_group n` - group of permutations of n elements (symmetric group)
  - `alt_group n` - group of even permutations of n elements (alternating group)
+ - `free_Abelian_group S` - free Abelian group on generators S
+ - for free groups, see [this AFP entry][free-groups]
 
 ### Cyclic groups
 
@@ -175,3 +177,4 @@ are missing from `HOL-Algebra`. See `Cyclic_Groups.thy`.
  - order of an element: `ord x`
 
 [tutorial.pdf]: https://isabelle.in.tum.de/dist/Isabelle2020/doc/tutorial.pdf
+[free-groups]: https://www.isa-afp.org/entries/Free-Groups.html
