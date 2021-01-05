@@ -10,6 +10,7 @@ session Common = Useful_Deps +
   theories
     Future_Library
     Cyclic_Groups
+    Dihedral_Groups
 
 session "OM-1969-Stage1" in "om/1969/stage1" = Common +
   options [document = pdf, document_output = "output"]
