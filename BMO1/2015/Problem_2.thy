@@ -16,17 +16,18 @@ theorem problem2:
   shows "12 dvd a"
     and "\<exists>k. k\<^sup>2 = 2*(p + a + 1)"
 proof -
-  from assms(1) have *: "p * p = (b + a) * (b - a)"
+  from `p\<^sup>2 + a\<^sup>2 = b\<^sup>2` have *: "p * p = (b + a) * (b - a)"
     by (simp add: power2_eq_square flip: square_diff_square_factored)
   hence "b + a dvd p * p"
     by auto
   have "b + a \<in> {1, p, p*p}"
   proof -
-    from `b + a dvd p*p` obtain x y where "b + a = x * y" and "x dvd p" and "y dvd p"
+    from `b + a dvd p*p` obtain x y where
+      "b + a = x * y" and "x dvd p" and "y dvd p"
       using dvd_productE by blast
     with `prime p` have "\<bar>x\<bar> = 1 \<or> \<bar>x\<bar> = p" and "\<bar>y\<bar> = 1 \<or> \<bar>y\<bar> = p"
       by (auto simp add: prime_int_iff)
-    with pos `b + a = x * y` show "b + a \<in> {1, p, p*p}"
+    with pos and `b + a = x * y` show "b + a \<in> {1, p, p*p}"
       by (cases "x \<ge> 0"; cases "y \<ge> 0"; auto; smt zero_less_mult_iff)
   qed
   moreover have "b + a \<noteq> 1" using `a > 0` `b > 0` by auto
