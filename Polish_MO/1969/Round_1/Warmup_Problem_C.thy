@@ -5,7 +5,7 @@ theory Warmup_Problem_C
 begin
 
 subsection "Warmup problem C"
-(* TAGS: equation *)
+(* TAGS: equation-over-reals *)
 text "This one is a straight-forward equation:"
 
 theorem warmup3:

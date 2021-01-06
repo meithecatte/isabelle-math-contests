@@ -26,10 +26,13 @@ def read_tags(filename):
 problems = {}
 
 def prepare_name(name, nice=False):
-    if name in NICE_NAMES:
+    if nice and name in NICE_NAMES:
         return NICE_NAMES[name]
     else:
         return name.replace('_', ' ')
+
+def prepare_tag(tag):
+    return tag.replace('-', ' ')
 
 class Problem:
     def __init__(self, origin, pdf, tags):
@@ -38,7 +41,7 @@ class Problem:
         self.origin = origin
 
     def tag_list(self):
-        return ', '.join(tag.replace('-', ' ') for tag in self.tags)
+        return ', '.join(map(prepare_tag, self.tags))
 
     def entry(self, origin):
         return f'- [{origin}]({self.pdf}) ({self.tag_list()})'
@@ -71,6 +74,10 @@ def make_fold(header, contents):
 def make_category(header, contents):
     return f"- {header}\n{indent(contents)}"
 
+def with_count(name, count):
+    problems = 'problems' if count > 1 else 'problem'
+    return name + f" [<i>{count} {problems}</i>]"
+
 def render_dict(name, dictionary, top=False):
     contents = ''
     total_folded = 0
@@ -90,12 +97,33 @@ def render_dict(name, dictionary, top=False):
 
     name = prepare_name(name, True)
     if should_fold:
-        problems = 'problems' if total_problems > 1 else 'problem'
-        md = make_fold(name + f" [<i>{total_problems} {problems}</i>]", contents)
+        md = make_fold(with_count(name, total_problems), contents)
         total_folded = 1
     else:
         md = make_category(name, contents)
     return md, total_folded, total_problems
+
+# For deterministic ordering, don't collect tags during remember_problem
+def collect_problems(problems):
+    if type(problems) is not dict:
+        return [problems]
+    return sum((collect_problems(v) for _, v in sorted(problems.items())), [])
+
+def show_tag(tag, problems):
+    contents = '\n'.join(problem.entry_by_tag() for problem in problems)
+    return make_fold(with_count(prepare_tag(tag), len(problems)), contents)
+
+def show_tags():
+    by_tag = {}
+    for problem in collect_problems(problems):
+        for tag in problem.tags:
+            if tag not in by_tag:
+                by_tag[tag] = []
+            by_tag[tag].append(problem)
+    contents = ''
+    for tag, probs in sorted(by_tag.items(), key=lambda x: -len(x[1])):
+        contents += show_tag(tag, probs) + '\n'
+    return contents
 
 if __name__ == "__main__":
     shutil.rmtree(BUILD, ignore_errors=True)
@@ -126,7 +154,9 @@ if __name__ == "__main__":
     with open('ROOT', 'a') as f:
         f.write(rootfile_snippet)
 
-    readme_snippet = '## Problems by origin\n\n'
+    readme_snippet = '## Problems by tag\n\n' + show_tags() + '\n'
+
+    readme_snippet += '## Problems by origin\n\n'
     for name, value in sorted(problems.items()):
         readme_snippet += render_dict(name, value, True)[0] + '\n'
 
