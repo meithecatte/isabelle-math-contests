@@ -15,8 +15,9 @@ def pdf_path(root):
 
 def copy_pdf(root):
     path = pdf_path(root)
-    os.makedirs(path, exist_ok=True)
-    shutil.copy(root + '/document.pdf', OUTDIR + '/' + path)
+    path = OUTDIR + '/' + path
+    os.makedirs(os.path.dirname(path), exist_ok=True)
+    shutil.copy(root + '/document.pdf', path)
 
 if __name__ == "__main__":
     os.makedirs(OUTDIR, exist_ok=True)
