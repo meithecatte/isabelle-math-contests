@@ -1,13 +1,9 @@
-section "Series II"
-
-theory SeriesII
-  imports
-    Complex_Main
-    "HOL-Analysis.Analysis"
+theory Problem_5
+  imports "HOL-Analysis.Analysis"
 begin
 
 subsection "Problem 5"
-
+(* TAGS: inequality *)
 text \<open>Real numbers $M, a_1, a_2, \ldots, a_{10}$ are given. Prove that,
 if $a_1x_1 + a_2x_2 + \cdots + a_{10}x_{10} \leq M$ for all $x_i$ such that
 $|x_i| = 1$, then
