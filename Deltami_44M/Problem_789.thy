@@ -59,4 +59,6 @@ next
     apply (auto simp add: power2_eq_square)
     apply (thin_tac "\<forall>x. f x = x * x")
     by algebra
-qed 
+qed
+
+end
