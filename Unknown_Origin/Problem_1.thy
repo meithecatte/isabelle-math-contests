@@ -2,7 +2,7 @@ theory Problem_1
   imports Complex_Main
 begin
 (* TAGS: functional-equation *)
-text \<open>Find all functions $f : \<real> \to \<real>$ satisfying
+text \<open>Find all functions $f : \mathbb{R} \to \mathbb{R}$ satisfying
 $$x f(x) + f(-x) = 1.$$\<close>
 
 theorem

@@ -2,7 +2,7 @@ theory Problem_789
   imports Complex_Main
 begin
 
-text \<open>Find all functions $f : \<real> \to \<real>$ satisfying
+text \<open>Find all functions $f : \mathbb{R} \to \mathbb{R}$ satisfying
 $$f(f(x) + y) = 4yf(x) + f(x^2 - y).$$\<close>
 (* TAGS: functional-equation *)
 theorem
