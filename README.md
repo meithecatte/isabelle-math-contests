@@ -30,6 +30,12 @@ I encourage you to explore.
   - [Polish MO 2020 Round 1 Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_1/Polish_MO-2020-Round_1-Problem_1.pdf) (inequality)
   </details>
 - <details>
+  <summary>functional equation [<i>2 problems</i>]</summary>
+  
+  - [Deltami 44M Problem 789](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Deltami_44M/Deltami_44M-Problem_789.pdf) (functional equation)
+  - [Unknown Origin Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Unknown_Origin/Unknown_Origin-Problem_1.pdf) (functional equation)
+  </details>
+- <details>
   <summary>group theory [<i>2 problems</i>]</summary>
   
   - [Napkin Problem 1A](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Napkin/Napkin-Problem_1A.pdf) (group theory)
@@ -83,6 +89,12 @@ I encourage you to explore.
   
   </details>
 - <details>
+  <summary>Deltami 44M [<i>1 problem</i>]</summary>
+  
+  - [Problem 789](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Deltami_44M/Deltami_44M-Problem_789.pdf) (functional equation)
+  
+  </details>
+- <details>
   <summary>An Infinitely Large Napkin [<i>2 problems</i>]</summary>
   
   - [Problem 1A](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Napkin/Napkin-Problem_1A.pdf) (group theory)
@@ -109,6 +121,12 @@ I encourage you to explore.
       - [Problem 3](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_1/Polish_MO-2020-Round_1-Problem_3.pdf) (number theory)
       
     
+  
+  </details>
+- <details>
+  <summary>Unknown Origin [<i>1 problem</i>]</summary>
+  
+  - [Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Unknown_Origin/Unknown_Origin-Problem_1.pdf) (functional equation)
   
   </details>
 
