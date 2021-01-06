@@ -14,6 +14,7 @@ def pdf_path(root):
     return '/'.join(segments[:-1] + [filename])
 
 def copy_pdf(root):
+    print(root)
     path = pdf_path(root)
     path = OUTDIR + '/' + path
     os.makedirs(os.path.dirname(path), exist_ok=True)

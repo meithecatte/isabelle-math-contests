@@ -1,6 +1,10 @@
+chapter "Some facts from Number Theory"
+
 theory NT_Facts
   imports "HOL-Number_Theory.Number_Theory"
 begin
+
+section "Quadratic residues of primes"
 
 lemma pp_mod8:
   fixes p :: int

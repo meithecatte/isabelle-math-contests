@@ -1,3 +1,5 @@
+chapter "Dihedral Groups"
+
 theory Dihedral_Groups
   imports
     "HOL-Algebra.Algebra"

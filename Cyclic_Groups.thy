@@ -1,3 +1,5 @@
+chapter \<open>Cyclic groups\<close>
+
 theory Cyclic_Groups
   imports
     "HOL-Algebra.Algebra"
