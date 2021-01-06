@@ -19,8 +19,7 @@ I encourage you to explore.
 You probably want to see [the other branch][redirect]. See the section to below if
 you're curious why this is necessary.
 
-<!-- TODO: add a README anchor to this link -->
-[redirect]: https://github.com/NieDzejkob/isabelle-math-contests/tree/built-pdfs
+[redirect]: https://github.com/NieDzejkob/isabelle-math-contests/tree/built-pdfs#isabellehol-solutions-to-math-contest-problems
 
 <!-- END DYNAMIC CONTENT -->
 
