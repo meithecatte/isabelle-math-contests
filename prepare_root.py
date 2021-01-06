@@ -86,11 +86,12 @@ def render_dict(name, dictionary, top=False):
             total_folded += 1
             total_problems += 1
         contents += '\n'
-    should_fold = top or total_folded >= 5
+    should_fold = top or total_folded >= 10
 
     name = prepare_name(name, True)
     if should_fold:
-        md = make_fold(name + f' [<i>{total_problems} problems</i>]', contents)
+        problems = 'problems' if total_problems > 1 else 'problem'
+        md = make_fold(name + f" [<i>{total_problems} {problems}</i>]", contents)
         total_folded = 1
     else:
         md = make_category(name, contents)
@@ -125,8 +126,8 @@ if __name__ == "__main__":
     with open('ROOT', 'a') as f:
         f.write(rootfile_snippet)
 
-    readme_snippet = '# Problems by origin\n\n'
-    for name, value in problems.items():
+    readme_snippet = '## Problems by origin\n\n'
+    for name, value in sorted(problems.items()):
         readme_snippet += render_dict(name, value, True)[0] + '\n'
 
     os.makedirs('output', exist_ok=True)
