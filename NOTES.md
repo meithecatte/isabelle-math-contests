@@ -7,6 +7,12 @@ what you actually want is the property that if `f: A -> B` is an injective funct
 then `card A <= card B`. When you have `card A > card B`, you can infer that the
 function in question cannot be injective.
 
+# Number Theory
+
+ - `a div b`, `a mod b` - Euclidean division
+ - `[a = b] (mod c)` - congruences (in `HOL-Number_Theory.Cong`)
+ - `multiplicity p n` - exponent of `p` in factorization of `n`
+
 # Abstract algebra
 
 ## The two definitions of a group
