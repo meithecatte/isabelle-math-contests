@@ -15,12 +15,13 @@ I encourage you to explore.
 ## Problems by tag
 
 - <details>
-  <summary>number theory [<i>4 problems</i>]</summary>
+  <summary>number theory [<i>5 problems</i>]</summary>
   
   - [BMO1 2015 Problem 2](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/BMO1/2015/BMO1-2015-Problem_2.pdf) (number theory)
   - [Polish MO 1969 Round 1 Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Problem_1.pdf) (number theory, diophantine equation)
   - [Polish MO 1969 Round 1 Warmup Problem A](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Warmup_Problem_A.pdf) (number theory, congruences)
   - [Polish MO 2020 Round 1 Problem 3](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_1/Polish_MO-2020-Round_1-Problem_3.pdf) (number theory)
+  - [USAMO 2006 Problem 5](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/USAMO/2006/USAMO-2006-Problem_5.pdf) (number theory, combinatorics, nondeterministic process)
   </details>
 - <details>
   <summary>inequality [<i>3 problems</i>]</summary>
@@ -77,6 +78,16 @@ I encourage you to explore.
   
   - [Polish MO 1969 Round 1 Warmup Problem D](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Warmup_Problem_D.pdf) (metric space, geometry)
   </details>
+- <details>
+  <summary>combinatorics [<i>1 problem</i>]</summary>
+  
+  - [USAMO 2006 Problem 5](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/USAMO/2006/USAMO-2006-Problem_5.pdf) (number theory, combinatorics, nondeterministic process)
+  </details>
+- <details>
+  <summary>nondeterministic process [<i>1 problem</i>]</summary>
+  
+  - [USAMO 2006 Problem 5](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/USAMO/2006/USAMO-2006-Problem_5.pdf) (number theory, combinatorics, nondeterministic process)
+  </details>
 
 ## Problems by origin
 
@@ -120,6 +131,14 @@ I encourage you to explore.
       - [Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_1/Polish_MO-2020-Round_1-Problem_1.pdf) (inequality)
       - [Problem 3](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_1/Polish_MO-2020-Round_1-Problem_3.pdf) (number theory)
       
+    
+  
+  </details>
+- <details>
+  <summary>USAMO [<i>1 problem</i>]</summary>
+  
+  - 2006
+    - [Problem 5](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/USAMO/2006/USAMO-2006-Problem_5.pdf) (number theory, combinatorics, nondeterministic process)
     
   
   </details>
