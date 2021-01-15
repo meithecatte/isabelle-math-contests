@@ -24,17 +24,18 @@ I encourage you to explore.
   - [USAMO 2006 Problem 5](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/USAMO/2006/USAMO-2006-Problem_5.pdf) (number theory, combinatorics, nondeterministic process)
   </details>
 - <details>
+  <summary>functional equation [<i>3 problems</i>]</summary>
+  
+  - [Deltami 44M Problem 789](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Deltami_44M/Deltami_44M-Problem_789.pdf) (functional equation)
+  - [IMO 2019 Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/IMO/2019/IMO-2019-Problem_1.pdf) (functional equation)
+  - [Unknown Origin Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Unknown_Origin/Unknown_Origin-Problem_1.pdf) (functional equation)
+  </details>
+- <details>
   <summary>inequality [<i>3 problems</i>]</summary>
   
   - [Polish MO 1969 Round 1 Problem 5](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Problem_5.pdf) (inequality)
   - [Polish MO 1969 Round 1 Warmup Problem B](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Warmup_Problem_B.pdf) (inequality, multiple solutions, calculus)
   - [Polish MO 2020 Round 1 Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_1/Polish_MO-2020-Round_1-Problem_1.pdf) (inequality)
-  </details>
-- <details>
-  <summary>functional equation [<i>2 problems</i>]</summary>
-  
-  - [Deltami 44M Problem 789](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Deltami_44M/Deltami_44M-Problem_789.pdf) (functional equation)
-  - [Unknown Origin Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Unknown_Origin/Unknown_Origin-Problem_1.pdf) (functional equation)
   </details>
 - <details>
   <summary>group theory [<i>2 problems</i>]</summary>
@@ -109,7 +110,7 @@ I encourage you to explore.
   <summary>International Math Olympiad [<i>1 problem</i>]</summary>
   
   - 2019
-    - [Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/IMO/2019/IMO-2019-Problem_1.pdf) ()
+    - [Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/IMO/2019/IMO-2019-Problem_1.pdf) (functional equation)
     
   
   </details>
