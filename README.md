@@ -92,7 +92,7 @@ I encourage you to explore.
 ## Problems by origin
 
 - <details>
-  <summary>British Math Olympiad Round 1 [<i>1 problem</i>]</summary>
+  <summary>British Maths Olympiad Round 1 [<i>1 problem</i>]</summary>
   
   - 2015
     - [Problem 2](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/BMO1/2015/BMO1-2015-Problem_2.pdf) (number theory)
@@ -103,6 +103,14 @@ I encourage you to explore.
   <summary>Deltami 44M [<i>1 problem</i>]</summary>
   
   - [Problem 789](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Deltami_44M/Deltami_44M-Problem_789.pdf) (functional equation)
+  
+  </details>
+- <details>
+  <summary>International Math Olympiad [<i>1 problem</i>]</summary>
+  
+  - 2019
+    - [Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/IMO/2019/IMO-2019-Problem_1.pdf) ()
+    
   
   </details>
 - <details>
@@ -135,7 +143,7 @@ I encourage you to explore.
   
   </details>
 - <details>
-  <summary>USAMO [<i>1 problem</i>]</summary>
+  <summary>United States of America Math Olympiad [<i>1 problem</i>]</summary>
   
   - 2006
     - [Problem 5](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/USAMO/2006/USAMO-2006-Problem_5.pdf) (number theory, combinatorics, nondeterministic process)
