@@ -2,6 +2,9 @@ theory Problem_1
   imports Main
 begin
 
+text \<open>Find all functions $f : \mathbb{Z} \to \mathbb{Z}$ satisfying
+$$f(2a) + 2f(b) = f(f(a+b)).$$\<close>
+(* TAGS: functional-equation *)
 theorem problem1:
   fixes f :: "int \<Rightarrow> int"
   obtains k where
