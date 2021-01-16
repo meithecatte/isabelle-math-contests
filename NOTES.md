@@ -1,5 +1,52 @@
 This document contains various notes on the mathematical library of Isabelle/HOL.
 
+# Functions
+
+In general, functions are defined on an entire type. As such, [`undefined` may sometimes
+get involved][undefined]. In general, there is no way to prove that `undefined`
+doesn't occur. For a surjective function `f`, `⋀x. f x ≠ undefined` is outright
+provably false. If you need to model a partial function, consider using `'a ⇀ 'b`
+(which expands to `'a ⇒ 'b option`).
+
+ - `inj f`, `surj f`, `bij f` - respective properties *on the entire types*
+ - `inj_on f A`, `bij_betw f A B` - said properties on a specified set
+ - ``f ` S`` - image of set `S` through `f` (thus, surjectivity onto a set can be specified as ``f ` A = B``)
+ - `f^^n` - repeated application
+ - `λx. x + 2` (`%x. x + 2`) - inline function (aka. lambda or closure)
+ - `f(a := y)` - change a single value of a function, i.e. `λx. if x = a then y else f x`
+   - this can be chained: `f(a := b, c := d)`
+   - also works for partial functions: `f(a ↦ b)` (that's a `\mapsto` arrow)
+   - and lists: `xs[n := x]`
+   - and records: `r⦇field := v⦈`
+ - from `HOL-Library.FuncSet`:
+     - `A → B` - set of functions `f` such that ``f ` A ⊆ B``
+     - `extensional A` - set of functions that have the value `undefined` on all inputs outside of the set `A`.
+       You probably won't ever want to prove that a specific function belongs to such a set (unless as a precondition of some lemma...).
+       Instead, the goal is to fix a specific value outside of `A`, such that each function we can define on `A` has only one representative.
+       - See `extensionalityI`
+
+# Induction
+
+There are plenty of examples of induction on natural numbers or lists. However,
+there are many other induction rules that can be used (specify the rule with
+`(induction x y arbitrary: z rule: foo)`). Some examples:
+
+- `rev_induct` - list induction, but the new element is at the end (`xs @ [x]`)
+- `list_nonempty_induct` - list induction, but has assumption `xs ≠ []` and `[x]` is the base case
+- `list_induct2` - induction on two lists at once (where the lists are of equal length)
+- `list_induct2'` - induction on two lists at once (with separate cases for `?P (x # xs) []` and `?P [] (y # ys)`)
+- `int_induct` - induction on integers. Pick an arbitrary threshold value, and prove
+    two inductive steps: ascending, above the threshold, and descending, below the threshold
+- `less_induct` - the *strong induction*, where the inductive hypothesis is that all numbers smaller than the current one satisfy `?P`
+- `finite_induct` - proves a statement about a finite set by adding one element at a time
+  - beware of `finite.induct`, which is the same thing but also makes you handle the case where the "new" element was actually already in the set
+- `finite_induct_select` - lets you choose a specific element to remove/insert on each iteration
+- `finite_linorder_min_induct`, `finite_linorder_max_induct` - the elements are inserted into the set in sorted order
+- `finite_ranking_induct` - likewise, but lets you specify a comparison key
+
+Moreover, any recursive function `foo` will also have a corresponding induction rule `foo.induct`,
+with a case for each defining equation. Useful for non-conventional recursion schemes.
+
 # Pigeonhole Principle
 
 At first, it might seem hard to formalize this kind of reasoning. Most of the time,
@@ -184,3 +231,4 @@ are missing from `HOL-Algebra`. See `Cyclic_Groups.thy`.
 
 [tutorial.pdf]: https://isabelle.in.tum.de/dist/Isabelle2020/doc/tutorial.pdf
 [free-groups]: https://www.isa-afp.org/entries/Free-Groups.html
+[undefined]: https://www.joachim-breitner.de/blog/732-Isabelle_functions__Always_total,_sometimes_undefined
