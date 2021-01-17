@@ -3,8 +3,10 @@ theory Future_Library
     "HOL-Computational_Algebra.Factorial_Ring"
 begin
 
-subsection "Lemmas that might be present in some future release of Isabelle"
+section "Lemmas that might be present in some future release of Isabelle"
 (* There are also some of those in Cyclic_Groups.thy *)
+
+subsection "Minima and maxima"
 (* https://lists.cam.ac.uk/mailman/htdig/cl-isabelle-users/2020-October/msg00021.html *)
 
 lemma ex_max_if_finite:
@@ -41,6 +43,8 @@ apply(simp add: arg_max_def is_arg_max_def)
 apply(rule someI2[of _ a])
  apply (simp add: less_le_not_le)
   by (metis inj_on_eq_iff less_le mem_Collect_eq)
+
+subsection "Multiplicities"
 
 context factorial_semiring
 begin
@@ -162,5 +166,92 @@ proof -
 qed
 
 end
+
+subsection "Summations"
+
+lemma max_ge_card: "finite S \<Longrightarrow> Suc (Max S) \<ge> card S"
+proof (rule classical)
+  assume "finite S" and "\<not> Suc (Max S) \<ge> card S"
+  then have "Suc (Max S) < card S"
+    by simp
+  with `finite S` have "S \<subseteq> {0..Max S}"
+    by auto
+  hence "card S \<le> card {0..Max S}"
+    by (intro card_mono; auto)
+  thus "card S \<le> Suc (Max S)"
+    by simp
+qed
+
+lemma sum_min:
+  shows "\<Sum> {0..<card S} \<le> \<Sum> S"
+proof (cases "finite S")
+  case True
+  then show ?thesis
+  proof (induction "card S" arbitrary: S)
+    case (Suc x)
+    then have "Max S \<ge> x" using max_ge_card by fastforce
+    let ?S' = "S - {Max S}"
+    from Suc have "Max S \<in> S" by (auto intro: Max_in)
+    hence cards: "card S = Suc (card ?S')"
+      using `finite S` by (intro card.remove; auto)
+    hence "\<Sum> {0..<card ?S'} \<le> \<Sum> ?S'"
+      using Suc by (intro Suc; auto)
+
+    hence "\<Sum> {0..<card ?S'} + x \<le> \<Sum> ?S' + Max S"
+      using `Max S \<ge> x` by simp
+    also have "... = \<Sum> S"
+      using sum.remove[OF `finite S` `Max S \<in> S`, where g="\<lambda>x. x"]
+      by simp
+    finally show ?case
+      using cards Suc by auto
+  qed simp
+qed simp
+
+lemma sum_count:
+  assumes "finite S" "finite R" "g ` S \<subseteq> R"
+  shows "(\<Sum>x \<in> S. f (g x)) = (\<Sum>y \<in> R. of_nat (card {x \<in> S. g x = y}) * f y)"
+proof -
+  let ?r = "relation_of (\<lambda>p q. g p = g q) S"
+  have eqv: "equiv S ?r"
+    unfolding relation_of_def by (auto intro: comp_equivI)
+  have finite: "C \<in> S//?r \<Longrightarrow> finite C" for C
+    by (fact finite_equiv_class[OF `finite S` equiv_type[OF `equiv S ?r`]])
+  have disjoint: "A \<in> S//?r \<Longrightarrow> B \<in> S//?r \<Longrightarrow> A \<noteq> B \<Longrightarrow> A \<inter> B = {}" for A B
+    using eqv quotient_disj by blast
+
+  let ?cls = "\<lambda>y. {x \<in> S. y = g x}"
+  have quot_as_img: "S//?r = ?cls ` g ` S"
+    by (auto simp add: relation_of_def quotient_def)
+  have cls_inj: "inj_on ?cls (g ` S)"
+    by (auto intro: inj_onI)
+
+  have rest_0: "(\<Sum>y \<in> R - g ` S. of_nat (card (?cls y)) * f y) = 0"
+    (is "?rest = 0")
+  proof -
+    {
+      fix y
+      assume "y \<in> R - g ` S"
+      then have *: "?cls y = {}"
+        by auto
+      have "of_nat (card (?cls y)) * f y = 0"
+        unfolding * by simp
+    }
+    thus ?thesis by simp
+  qed
+
+  have "(\<Sum>x \<in> S. f (g x)) = (\<Sum>C \<in> S//?r. \<Sum>x \<in> C. f (g x))"
+    using eqv finite disjoint
+    by (simp flip: sum.Union_disjoint[simplified] add: Union_quotient)
+  also have "... = (\<Sum>y \<in> g ` S. \<Sum>x \<in> ?cls y. f (g x))"
+    unfolding quot_as_img by (simp add: sum.reindex[OF cls_inj])
+  also have "... = (\<Sum>y \<in> g ` S. \<Sum>x \<in> ?cls y. f y)"
+    by auto
+  also have "... = (\<Sum>y \<in> g ` S. of_nat (card (?cls y)) * f y)"
+    by (simp flip: sum_constant)
+  also have "... = (\<Sum>y \<in> R. of_nat (card (?cls y)) * f y)"
+    using rest_0 by (simp add: sum.subset_diff[OF \<open>g ` S \<subseteq> R\<close> \<open>finite R\<close>])
+  finally show ?thesis
+    by (simp add: eq_commute)
+qed
 
 end
