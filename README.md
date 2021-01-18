@@ -15,9 +15,10 @@ I encourage you to explore.
 ## Problems by tag
 
 - <details>
-  <summary>number theory [<i>5 problems</i>]</summary>
+  <summary>number theory [<i>6 problems</i>]</summary>
   
   - [BMO1 2015 Problem 2](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/BMO1/2015/BMO1-2015-Problem_2.pdf) (number theory)
+  - [Greece MO 2007 Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Greece_MO/2007/Greece_MO-2007-Problem_1.pdf) (number theory)
   - [Polish MO 1969 Round 1 Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Problem_1.pdf) (number theory, diophantine equation)
   - [Polish MO 1969 Round 1 Warmup Problem A](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Warmup_Problem_A.pdf) (number theory, congruences)
   - [Polish MO 2020 Round 1 Problem 3](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_1/Polish_MO-2020-Round_1-Problem_3.pdf) (number theory)
@@ -105,6 +106,14 @@ I encourage you to explore.
   <summary>Deltami 44M [<i>1 problem</i>]</summary>
   
   - [Problem 789](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Deltami_44M/Deltami_44M-Problem_789.pdf) (functional equation)
+  
+  </details>
+- <details>
+  <summary>Greece MO [<i>1 problem</i>]</summary>
+  
+  - 2007
+    - [Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Greece_MO/2007/Greece_MO-2007-Problem_1.pdf) (number theory)
+    
   
   </details>
 - <details>
