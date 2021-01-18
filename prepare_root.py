@@ -28,6 +28,8 @@ problems = {}
 def prepare_name(name, nice=False):
     if nice and name in NICE_NAMES:
         return NICE_NAMES[name]
+    elif nice and name.endswith('_MO'):
+        return name.replace('_', ' ')[:-2] + 'Math Olympiad'
     else:
         return name.replace('_', ' ')
 
