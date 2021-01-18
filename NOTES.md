@@ -11,7 +11,9 @@ provably false. If you need to model a partial function, consider using `'a ⇀ 
  - `inj f`, `surj f`, `bij f` - respective properties *on the entire types*
  - `inj_on f A`, `bij_betw f A B` - said properties on a specified set
  - ``f ` S`` - image of set `S` through `f` (thus, surjectivity onto a set can be specified as ``f ` A = B``)
+   - also known as mapping over a set
  - `f^^n` - repeated application
+   - beware of operator precedence here. `f^^n x = f^^(n x)`, not `(f^^n) x`
  - `λx. x + 2` (`%x. x + 2`) - inline function (aka. lambda or closure)
  - `f(a := y)` - change a single value of a function, i.e. `λx. if x = a then y else f x`
    - this can be chained: `f(a := b, c := d)`
@@ -43,6 +45,7 @@ there are many other induction rules that can be used (specify the rule with
 - `finite_induct_select` - lets you choose a specific element to remove/insert on each iteration
 - `finite_linorder_min_induct`, `finite_linorder_max_induct` - the elements are inserted into the set in sorted order
 - `finite_ranking_induct` - likewise, but lets you specify a comparison key
+- `prime_divisors_induct` - induction on the prime factorization of a number
 
 Moreover, any recursive function `foo` will also have a corresponding induction rule `foo.induct`,
 with a case for each defining equation. Useful for non-conventional recursion schemes.
@@ -56,9 +59,39 @@ function in question cannot be injective.
 
 # Number Theory
 
+Even though `nat` doesn't contain negative numbers, the subtraction operator is nevertheless
+defined for `nat`. The result gets capped at 0, i.e. `3 - 5 = 0`. This may make rearranging expressions
+a considerable difficulty for proof automation.
+
+One workaround I've developed is to lift the definition in the integers:
+
+```isabelle
+context
+  fixes g :: "nat ⇒ nat"
+  fixes h :: "nat ⇒ nat"
+  assumes gh: "⋀x. g x ≥ h x"
+begin
+
+definition f :: "nat ⇒ nat" where
+  "f x = g x - h x"
+
+lemma f_alt: "int (f x) = int (g x) - int (h x)"
+  by (simp add: f_def nat_minus_as_int gh)
+```
+
+Then, instead of unfolding `f_def`, add `int` around your claim and use `f_alt`. From `int x = int y`, `x = y` easily follows.
+For an extended example, see my solution of [IMO 2019 Problem 5][imo2019-p5].
+
+Other useful stuff:
+
  - `a div b`, `a mod b` - Euclidean division
  - `[a = b] (mod c)` - congruences (in `HOL-Number_Theory.Cong`)
- - `multiplicity p n` - exponent of `p` in factorization of `n`
+ - `multiplicity p n` - exponent of `p` in factorization of `n` (in `HOL-Computational_Algebra.Factorial_Ring`, imported in `HOL-Number_Theory`)
+ - `prime p`
+   - the definition you probably want is in `HOL-Computational_Algebra.Factorial_Ring`, but if you (even transitively) import `HOL-Algebra.Divisibility`,
+     you will end up with a definition for prime elements in monoids as the default.  To correct this, use `hide_const (open) Divisibility.prime`.
+   - if you need to prove that a larger number is prime, the AFP has [a `by pratt` proof method][pratt] that is much more efficient than simple `by simp`.
+ - `n choose k` - the binomial coefficient. Beware of the precedence, `a + b choose c + d = ((a + b) choose c) + d`
 
 # Abstract algebra
 
@@ -229,6 +262,21 @@ are missing from `HOL-Algebra`. See `Cyclic_Groups.thy`.
  - `order S = card (carrier S)`
  - order of an element: `ord x`
 
+# Analysis
+
+The main analysis definitions in Isabelle are based on *filters*. For an introduction, see [this paper][filters]
+(freely available [here][scihub]).
+
+ - `DERIV_intros`, `tendsto_intros` - lemma collections, to be used with `(auto intro: DERIV_intros)` or similar
+ - the `real_asymp` proof method (available in `HOL-Real_Asymp.Real_Asymp`) is able to prove many limits automatically
+   (there's [a paper][real-asymp] that describes its mechanisms)
+
 [tutorial.pdf]: https://isabelle.in.tum.de/dist/Isabelle2020/doc/tutorial.pdf
 [free-groups]: https://www.isa-afp.org/entries/Free-Groups.html
 [undefined]: https://www.joachim-breitner.de/blog/732-Isabelle_functions__Always_total,_sometimes_undefined
+[filters]: https://dx.doi.org/10.1007%2F978-3-642-39634-2_21
+[scihub]: https://en.wikipedia.org/wiki/Sci-Hub
+[real-asymp]: https://www21.in.tum.de/~eberlm/pdfs/real_asymp.pdf
+[pratt]: https://www.isa-afp.org/entries/Pratt_Certificate.html
+[imo2019-p5]: https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/IMO/2019/IMO-2019-Problem_5.pdf
+
