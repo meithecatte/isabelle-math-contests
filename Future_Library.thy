@@ -45,7 +45,7 @@ apply(rule someI2[of _ a])
   by (metis inj_on_eq_iff less_le mem_Collect_eq)
 
 subsection "Multiplicities"
-
+(* https://lists.cam.ac.uk/pipermail/cl-isabelle-users/2021-January/msg00088.html *)
 context factorial_semiring
 begin
 
@@ -168,7 +168,7 @@ qed
 end
 
 subsection "Summations"
-
+(* https://lists.cam.ac.uk/pipermail/cl-isabelle-users/2021-January/msg00103.html *)
 lemma max_ge_card: "finite S \<Longrightarrow> Suc (Max S) \<ge> card S"
 proof (rule classical)
   assume "finite S" and "\<not> Suc (Max S) \<ge> card S"
