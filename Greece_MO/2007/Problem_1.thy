@@ -1,6 +1,5 @@
 theory Problem_1
   imports "HOL-Number_Theory.Number_Theory"
-    "Common.NT_Facts"
 begin
 
 text \<open>Find all positive integers \<open>n\<close> such that \<open>4\<^sup>n + 2007\<close> is a perfect square.\<close>
