@@ -46,6 +46,7 @@ apply(rule someI2[of _ a])
 
 subsection "Multiplicities"
 (* https://lists.cam.ac.uk/pipermail/cl-isabelle-users/2021-January/msg00088.html *)
+
 context factorial_semiring
 begin
 
