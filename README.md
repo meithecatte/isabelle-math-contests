@@ -26,6 +26,13 @@ I encourage you to explore.
   - [USAMO 2006 Problem 5](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/USAMO/2006/USAMO-2006-Problem_5.pdf) (number theory, combinatorics, nondeterministic process)
   </details>
 - <details>
+  <summary>combinatorics [<i>3 problems</i>]</summary>
+  
+  - [APMO 2013 Problem 4](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/APMO/2013/APMO-2013-Problem_4.pdf) (combinatorics)
+  - [IMO 2019 Problem 5](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/IMO/2019/IMO-2019-Problem_5.pdf) (combinatorics)
+  - [USAMO 2006 Problem 5](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/USAMO/2006/USAMO-2006-Problem_5.pdf) (number theory, combinatorics, nondeterministic process)
+  </details>
+- <details>
   <summary>functional equation [<i>3 problems</i>]</summary>
   
   - [Deltami 44M Problem 789](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Deltami_44M/Deltami_44M-Problem_789.pdf) (functional equation)
@@ -38,12 +45,6 @@ I encourage you to explore.
   - [Polish MO 1969 Round 1 Problem 5](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Problem_5.pdf) (inequality)
   - [Polish MO 1969 Round 1 Warmup Problem B](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Warmup_Problem_B.pdf) (inequality, multiple solutions, calculus)
   - [Polish MO 2020 Round 1 Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_1/Polish_MO-2020-Round_1-Problem_1.pdf) (inequality)
-  </details>
-- <details>
-  <summary>combinatorics [<i>2 problems</i>]</summary>
-  
-  - [IMO 2019 Problem 5](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/IMO/2019/IMO-2019-Problem_5.pdf) (combinatorics)
-  - [USAMO 2006 Problem 5](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/USAMO/2006/USAMO-2006-Problem_5.pdf) (number theory, combinatorics, nondeterministic process)
   </details>
 - <details>
   <summary>group theory [<i>2 problems</i>]</summary>
@@ -95,6 +96,14 @@ I encourage you to explore.
 
 ## Problems by origin
 
+- <details>
+  <summary>Asia Pacific Math Olympiad [<i>1 problem</i>]</summary>
+  
+  - 2013
+    - [Problem 4](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/APMO/2013/APMO-2013-Problem_4.pdf) (combinatorics)
+    
+  
+  </details>
 - <details>
   <summary>British Maths Olympiad Round 1 [<i>1 problem</i>]</summary>
   
