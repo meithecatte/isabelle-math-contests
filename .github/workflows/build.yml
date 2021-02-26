@@ -29,7 +29,7 @@ jobs:
         run: python3 prepare_root.py
 
       - name: Build documents
-        uses: NieDzejkob/isabelle-action@v1.7
+        uses: NieDzejkob/isabelle-action@v1.8
         with:
           args: "build -D . -v"
           heapCacheDir: .heaps
