@@ -26,10 +26,11 @@ I encourage you to explore.
   - [USAMO 2006 Problem 5](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/USAMO/2006/USAMO-2006-Problem_5.pdf) (number theory, combinatorics, nondeterministic process)
   </details>
 - <details>
-  <summary>combinatorics [<i>3 problems</i>]</summary>
+  <summary>combinatorics [<i>4 problems</i>]</summary>
   
   - [APMO 2013 Problem 4](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/APMO/2013/APMO-2013-Problem_4.pdf) (combinatorics)
   - [IMO 2019 Problem 5](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/IMO/2019/IMO-2019-Problem_5.pdf) (combinatorics)
+  - [Polish MO 2020 Round 2 Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_2/Polish_MO-2020-Round_2-Problem_1.pdf) (combinatorics)
   - [USAMO 2006 Problem 5](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/USAMO/2006/USAMO-2006-Problem_5.pdf) (number theory, combinatorics, nondeterministic process)
   </details>
 - <details>
@@ -170,7 +171,7 @@ I encourage you to explore.
       - [Problem 3](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_1/Polish_MO-2020-Round_1-Problem_3.pdf) (number theory)
       
     - Round 2
-      - [Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_2/Polish_MO-2020-Round_2-Problem_1.pdf) ()
+      - [Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_2/Polish_MO-2020-Round_2-Problem_1.pdf) (combinatorics)
       
     
   
