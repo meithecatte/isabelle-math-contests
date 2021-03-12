@@ -151,7 +151,7 @@ I encourage you to explore.
   
   </details>
 - <details>
-  <summary>Polish Math Olympiad [<i>9 problems</i>]</summary>
+  <summary>Polish Math Olympiad [<i>10 problems</i>]</summary>
   
   - 1969
     - Round 1
@@ -168,6 +168,9 @@ I encourage you to explore.
     - Round 1
       - [Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_1/Polish_MO-2020-Round_1-Problem_1.pdf) (inequality)
       - [Problem 3](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_1/Polish_MO-2020-Round_1-Problem_3.pdf) (number theory)
+      
+    - Round 2
+      - [Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_2/Polish_MO-2020-Round_2-Problem_1.pdf) ()
       
     
   
