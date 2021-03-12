@@ -10,96 +10,6 @@ section \<open>Auxiliary lemmas\<close>
 text \<open>Firstly, we mirror the proof of @{text "generate_pow_card"} from @{text "HOL-Algebra"},
 but with some minor modifications that eliminate one of the assumptions\<close>
 context group begin
-lemma ord_elems_inf_carrier:
-  assumes "a \<in> carrier G" "ord a \<noteq> 0"
-  shows "{a[^]x | x. x \<in> (UNIV :: nat set)} = {a[^]x | x. x \<in> {0 .. ord a - 1}}" (is "?L = ?R")
-proof
-  show "?R \<subseteq> ?L" by blast
-  { fix y assume "y \<in> ?L"
-    then obtain x::nat where x: "y = a[^]x" by auto
-    define r q where "r = x mod ord a" and "q = x div ord a"
-    then have "x = q * ord a + r"
-      by (simp add: div_mult_mod_eq)
-    hence "y = (a[^]ord a)[^]q \<otimes> a[^]r"
-      using x assms by (metis mult.commute nat_pow_mult nat_pow_pow)
-    hence "y = a[^]r" using assms by simp
-    have "r < ord a" using assms by (simp add: r_def)
-    hence "r \<in> {0 .. ord a - 1}" by (force simp: r_def)
-    hence "y \<in> {a[^]x | x. x \<in> {0 .. ord a - 1}}" using \<open>y=a[^]r\<close> by blast
-  }
-  thus "?L \<subseteq> ?R" by auto
-qed
-
-lemma generate_pow_nat:
-  assumes a: "a \<in> carrier G" and "ord a \<noteq> 0"
-  shows "generate G { a } = { a [^] k | k. k \<in> (UNIV :: nat set) }"
-proof
-  show "{ a [^] k | k. k \<in> (UNIV :: nat set) } \<subseteq> generate G { a }"
-  proof
-    fix b assume "b \<in> { a [^] k | k. k \<in> (UNIV :: nat set) }"
-    then obtain k :: nat where "b = a [^] k" by blast
-    hence "b = a [^] (int k)"
-      by (simp add: int_pow_int)
-    thus "b \<in> generate G { a }"
-      unfolding generate_pow[OF a] by blast
-  qed
-next
-  show "generate G { a } \<subseteq> { a [^] k | k. k \<in> (UNIV :: nat set) }"
-  proof
-    fix b assume "b \<in> generate G { a }"
-    then obtain k :: int where k: "b = a [^] k"
-      unfolding generate_pow[OF a] by blast
-    show "b \<in> { a [^] k | k. k \<in> (UNIV :: nat set) }"
-    proof (cases "k < 0")
-      assume "\<not> k < 0"
-      hence "b = a [^] (nat k)"
-        by (simp add: k)
-      thus ?thesis by blast
-    next
-      assume "k < 0"
-      hence b: "b = inv (a [^] (nat (- k)))"
-        using k a by (auto simp: int_pow_neg)
-      obtain m where m: "ord a * m \<ge> nat (- k)"
-        by (metis assms(2) dvd_imp_le dvd_triv_right le_zero_eq mult_eq_0_iff not_gr_zero)
-      hence "a [^] (ord a * m) = \<one>"
-        by (metis a nat_pow_one nat_pow_pow pow_ord_eq_1)
-      then obtain k' :: nat where "(a [^] (nat (- k))) \<otimes> (a [^] k') = \<one>"
-        using m a nat_le_iff_add nat_pow_mult by auto
-      hence "b = a [^] k'"
-        using b a by (metis inv_unique' nat_pow_closed nat_pow_comm)
-      thus "b \<in> { a [^] k | k. k \<in> (UNIV :: nat set) }" by blast
-    qed
-  qed
-qed
-
-lemma generate_pow_card:
-  assumes a: "a \<in> carrier G"
-  shows "ord a = card (generate G { a })"
-proof (cases "ord a = 0")
-  case True
-  then have "infinite (carrier (subgroup_generated G {a}))"
-    using infinite_cyclic_subgroup_order[OF a] by auto
-  then have "infinite (generate G {a})"
-    unfolding subgroup_generated_def
-    using a by simp
-  then show ?thesis
-    using `ord a = 0` by auto
-next
-  case False
-  note finite_subgroup = this
-  then have "generate G { a } = (([^]) a) ` {0..ord a - 1}"
-    using generate_pow_nat ord_elems_inf_carrier a by auto
-  hence "card (generate G {a}) = card {0..ord a - 1}"
-    using ord_inj[OF a] card_image by metis
-  also have "... = ord a" using finite_subgroup by auto
-  finally show ?thesis.. 
-qed
-
-lemma order_subgroup_generated:
-  assumes "g \<in> carrier G"
-  shows "ord g = order (subgroup_generated G {g})"
-  unfolding order_def subgroup_generated_def
-  using assms generate_pow_card by simp
 
 lemma pow_mod_ord [simp]:
   fixes k::int
@@ -207,7 +117,7 @@ qed
 
 lemma integer_mod_group_iff_mod_self [simp]:
   "x \<in> carrier (integer_mod_group n) \<longleftrightarrow> x mod n = x"
-  by (auto simp add: carrier_integer_mod_group zmod_trival_iff)
+  by (auto simp add: carrier_integer_mod_group zmod_trivial_iff)
 
 lemma integer_mod_group_eq_if_cong:
   assumes "n dvd a - b"
@@ -231,7 +141,7 @@ proof -
   have ord_g [simp]: "?n = ord g"
   proof -
     have "ord g = order (subgroup_generated G {g})"
-      using order_subgroup_generated[OF g] by auto
+      using cyclic_order_is_ord[OF g] by auto
     also have "... = card (range (\<lambda>k::int. g [^] k))"
       unfolding order_def
       using carrier_subgroup_generated_by_singleton[OF g] by auto
@@ -351,7 +261,7 @@ lemma ord_1_integer_mod_group:
 proof -
   let ?G = "integer_mod_group n"
   have in_carrier: "1 mod n \<in> carrier ?G"
-    using zmod_trival_iff by auto
+    using zmod_trivial_iff by auto
   hence "group.ord ?G (1 mod n) = card (generate ?G {1 mod n})"
     by (simp add: group.generate_pow_card)
   also have "... = order ?G" 
@@ -368,7 +278,7 @@ proof -
   let ?G = "integer_mod_group n"
   interpret G: group ?G by auto
   have in_carrier: "1 mod n \<in> carrier ?G"
-    using zmod_trival_iff by auto
+    using zmod_trivial_iff by auto
   have *: "int (1 mod n) [^]\<^bsub>?G\<^esub> a = a"
     apply (simp add: int_pow_integer_mod_group)
     apply auto

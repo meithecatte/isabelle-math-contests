@@ -88,7 +88,7 @@ theorem problem1:
 proof (induction "card S" arbitrary: S rule: less_induct)
   case less
   then have "finite S"
-    using card_infinite by fastforce 
+    using card.infinite by fastforce 
   show ?case
   proof (cases "card (threepows S) = 0")
     case False

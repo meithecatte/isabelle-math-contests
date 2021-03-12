@@ -20,10 +20,10 @@ jobs:
       - name: Cache Isabelle heaps
         uses: actions/cache@v2
         with:
-          key: ${{ runner.os }}-Isabelle2020-cachefix-${{ hashFiles('ROOT') }}-${{ github.run_id }}
+          key: ${{ runner.os }}-Isabelle2021-${{ hashFiles('ROOT') }}-${{ github.run_id }}
           path: .heaps
           restore-keys: |
-            ${{ runner.os }}-Isabelle2020-cachefix
+            ${{ runner.os }}-Isabelle2021
 
       - name: Prepare ROOT file
         run: python3 prepare_root.py

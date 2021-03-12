@@ -4,7 +4,6 @@ theory Future_Library
 begin
 
 section "Lemmas that might be present in some future release of Isabelle"
-(* There are also some of those in Cyclic_Groups.thy *)
 
 subsection "Minima and maxima"
 (* https://lists.cam.ac.uk/mailman/htdig/cl-isabelle-users/2020-October/msg00021.html *)
@@ -69,10 +68,6 @@ corollary is_unit_iff_infinite_divisor_powers:
   assumes "y \<noteq> 0"
   shows "is_unit x \<longleftrightarrow> infinite {n. x^n dvd y}"
   using infinite_unit_divisor_powers finite_divisor_powers assms by auto
-
-lemma multiplicity_zero_left [simp]: "multiplicity 0 x = 0"
-  apply (cases "x = 0")
-  by (auto intro: not_dvd_imp_multiplicity_0)
 
 lemma multiplicity_dvd_iff_dvd:
   assumes "x \<noteq> 0"

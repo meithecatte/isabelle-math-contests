@@ -216,7 +216,7 @@ lemma numpos: "card (positions n) = 2^n"
   by (auto simp add: coin_card)
 
 corollary finite_positions[intro]: "finite (positions n)"
-  using card_infinite numpos by fastforce
+  using card.infinite numpos by fastforce
 
 lemma real_sum: "real (sum f S) = sum (real \<circ> f) S"
   using int_sum of_int_sum by simp
