@@ -10,7 +10,7 @@ Placek will color each card red, blue or yellow. Prove that Placek may color the
 in such a manner, that while Jacek is taking them off the table, at all times the following
 property is maintained: between any two cards of the same color, there is at least
 one card of a different color.\<close>
-
+(* TAGS: combinatorics *)
 datatype color = Red | Blue | Yellow
 
 definition property :: "color list \<Rightarrow> bool" where
