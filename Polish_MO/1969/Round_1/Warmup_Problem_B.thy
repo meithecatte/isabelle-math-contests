@@ -6,7 +6,7 @@ theory Warmup_Problem_B
 begin
 
 subsection "Warmup problem B"
-(* TAGS: inequality multiple-solutions calculus *)
+(* TAGS: inequality multiple-solutions real-analysis *)
 text "Prove that, for all real $a$ and $b$ we have
 $$(a+b)^4 \\leq 8(a^4 + b^4).$$"
 

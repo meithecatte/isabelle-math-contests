@@ -6,7 +6,7 @@ begin
 subsection "Problem 2"
 
 text "Prove that a sequence is bounded, converges, and find the limit."
-(* TAGS: calculus *)
+(* TAGS: real-analysis *)
 context
   fixes a :: real
   assumes a_bounds: "0 < a" "a < 1"

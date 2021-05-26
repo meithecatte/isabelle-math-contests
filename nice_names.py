@@ -4,4 +4,5 @@ NICE_NAMES = {
     'USAMO': 'United States of America Math Olympiad',
     'IMO': 'International Math Olympiad',
     'APMO': 'Asia Pacific Math Olympiad',
+    'IMC': 'Instagram Math Community',
 }
