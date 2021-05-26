@@ -15,7 +15,7 @@ I encourage you to explore.
 ## Problems by tag
 
 - <details>
-  <summary>number theory [<i>7 problems</i>]</summary>
+  <summary>number theory [<i>8 problems</i>]</summary>
   
   - [BMO1 2015 Problem 2](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/BMO1/2015/BMO1-2015-Problem_2.pdf) (number theory)
   - [Canada MO 2020 Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Canada_MO/2020/Canada_MO-2020-Problem_1.pdf) (number theory)
@@ -23,6 +23,7 @@ I encourage you to explore.
   - [Polish MO 1969 Round 1 Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Problem_1.pdf) (number theory, diophantine equation)
   - [Polish MO 1969 Round 1 Warmup Problem A](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Warmup_Problem_A.pdf) (number theory, congruences)
   - [Polish MO 2020 Round 1 Problem 3](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_1/Polish_MO-2020-Round_1-Problem_3.pdf) (number theory)
+  - [Polish MO 2020 Round 2 Problem 3](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_2/Polish_MO-2020-Round_2-Problem_3.pdf) (number theory)
   - [USAMO 2006 Problem 5](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/USAMO/2006/USAMO-2006-Problem_5.pdf) (number theory, combinatorics, nondeterministic process)
   </details>
 - <details>
@@ -41,10 +42,17 @@ I encourage you to explore.
   - [Unknown Origin Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Unknown_Origin/Unknown_Origin-Problem_1.pdf) (functional equation)
   </details>
 - <details>
+  <summary>real analysis [<i>3 problems</i>]</summary>
+  
+  - [IMC PoTD 15](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/IMC/IMC-PoTD_15.pdf) (real analysis)
+  - [Polish MO 1969 Round 1 Problem 2](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Problem_2.pdf) (real analysis)
+  - [Polish MO 1969 Round 1 Warmup Problem B](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Warmup_Problem_B.pdf) (inequality, multiple solutions, real analysis)
+  </details>
+- <details>
   <summary>inequality [<i>3 problems</i>]</summary>
   
   - [Polish MO 1969 Round 1 Problem 5](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Problem_5.pdf) (inequality)
-  - [Polish MO 1969 Round 1 Warmup Problem B](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Warmup_Problem_B.pdf) (inequality, multiple solutions, calculus)
+  - [Polish MO 1969 Round 1 Warmup Problem B](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Warmup_Problem_B.pdf) (inequality, multiple solutions, real analysis)
   - [Polish MO 2020 Round 1 Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_1/Polish_MO-2020-Round_1-Problem_1.pdf) (inequality)
   </details>
 - <details>
@@ -52,12 +60,6 @@ I encourage you to explore.
   
   - [Napkin Problem 1A](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Napkin/Napkin-Problem_1A.pdf) (group theory)
   - [Napkin Problem 1B](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Napkin/Napkin-Problem_1B.pdf) (group theory)
-  </details>
-- <details>
-  <summary>calculus [<i>2 problems</i>]</summary>
-  
-  - [Polish MO 1969 Round 1 Problem 2](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Problem_2.pdf) (calculus)
-  - [Polish MO 1969 Round 1 Warmup Problem B](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Warmup_Problem_B.pdf) (inequality, multiple solutions, calculus)
   </details>
 - <details>
   <summary>diophantine equation [<i>1 problem</i>]</summary>
@@ -72,7 +74,7 @@ I encourage you to explore.
 - <details>
   <summary>multiple solutions [<i>1 problem</i>]</summary>
   
-  - [Polish MO 1969 Round 1 Warmup Problem B](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Warmup_Problem_B.pdf) (inequality, multiple solutions, calculus)
+  - [Polish MO 1969 Round 1 Warmup Problem B](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Warmup_Problem_B.pdf) (inequality, multiple solutions, real analysis)
   </details>
 - <details>
   <summary>equation over reals [<i>1 problem</i>]</summary>
@@ -136,6 +138,12 @@ I encourage you to explore.
   
   </details>
 - <details>
+  <summary>Instagram Math Community [<i>1 problem</i>]</summary>
+  
+  - [PoTD 15](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/IMC/IMC-PoTD_15.pdf) (real analysis)
+  
+  </details>
+- <details>
   <summary>International Math Olympiad [<i>2 problems</i>]</summary>
   
   - 2019
@@ -152,15 +160,15 @@ I encourage you to explore.
   
   </details>
 - <details>
-  <summary>Polish Math Olympiad [<i>10 problems</i>]</summary>
+  <summary>Polish Math Olympiad [<i>11 problems</i>]</summary>
   
   - 1969
     - Round 1
       - [Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Problem_1.pdf) (number theory, diophantine equation)
-      - [Problem 2](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Problem_2.pdf) (calculus)
+      - [Problem 2](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Problem_2.pdf) (real analysis)
       - [Problem 5](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Problem_5.pdf) (inequality)
       - [Warmup Problem A](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Warmup_Problem_A.pdf) (number theory, congruences)
-      - [Warmup Problem B](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Warmup_Problem_B.pdf) (inequality, multiple solutions, calculus)
+      - [Warmup Problem B](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Warmup_Problem_B.pdf) (inequality, multiple solutions, real analysis)
       - [Warmup Problem C](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Warmup_Problem_C.pdf) (equation over reals)
       - [Warmup Problem D](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/1969/Round_1/Polish_MO-1969-Round_1-Warmup_Problem_D.pdf) (metric space, geometry)
       
@@ -172,6 +180,7 @@ I encourage you to explore.
       
     - Round 2
       - [Problem 1](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_2/Polish_MO-2020-Round_2-Problem_1.pdf) (combinatorics)
+      - [Problem 3](https://github.com/NieDzejkob/isabelle-math-contests/blob/built-pdfs/Polish_MO/2020/Round_2/Polish_MO-2020-Round_2-Problem_3.pdf) (number theory)
       
     
   
