@@ -1,14 +1,17 @@
-text \<open>The following is a formal, computer-checked proof in Isabelle/HOL.
-This differs only slightly from the usual mathematical notation. Most noticeably,
-function application is written \<open>f x\<close>, not $f(x)$. \<open>Suc n\<close> is simply \<open>n + 1\<close>, but
-in a form that works better for automation.\<close>
-
 theory PoTD_15
   imports
     "HOL-Analysis.Analysis"
     "HOL-Library.Quadratic_Discriminant"
 begin
 (* TAGS: real-analysis *)
+
+text \<open>Let \<open>a\<close> be a positive real number. Define a sequence \<open>x\<^sub>n\<close> by
+
+\<open>x\<^sub>0 = 0, x\<^bsub>n+1\<^esub> = a + x\<^sub>n\<^sup>2, n \<ge> 0\<close>.
+
+Find a necessary and sufficient condition on \<open>a\<close> for a finite
+limit $\lim_{n \to \infty} x_n$ existing.\<close>
+
 context
   fixes a :: real
   assumes "a > 0"
